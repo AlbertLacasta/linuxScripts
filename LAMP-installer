@@ -1,0 +1,68 @@
+#!/bin/bash
+# LAMP installer script
+
+# 0 - update the repositories
+echo "$(tput setaf 2) updating repositories"
+sudo apt update
+
+# 1 - install Apache
+
+echo "$(tput setaf 2)installing Apache ..."
+
+sudo apt install apache2
+
+echo "$(tput setaf 2) apache installation completed"
+
+# create a firewall rule for apache
+sudo ufw allow in "Apache"
+
+# 2 - install db server
+
+echo "$(tput setaf 2) database installation ..."
+
+PS3='Please select wich database you want to install: '
+options=("MySQL" "MongoDb")
+select opt in "${options[@]}"
+do
+    case $opt in
+        "MySQL")
+            echo "$(tput setaf 2) installing MySQL ..."
+            sudo apt install mysql-server
+            echo "$(tput setaf 2) MySQL installation completed"
+            break
+            ;;
+        "MongoDb")
+            echo "$(tput setaf 2) installing MongoDb ..."
+            sudo apt install -y mongodb
+            echo "$(tput setaf 2) MongoDB installation completed"
+            # check mongodb instance
+            mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+            
+            # start and enable mongodb
+            echo "$(tput setaf 2) starting and enable MongoDB"
+            sudo systemctl start mongodb
+            sudo systemctl enable mongodb
+
+            break
+            ;;
+        *) echo "invalid option $REPLY";;
+    esac
+done
+
+
+# 3 - install php
+
+echo "$(tput setaf 2) installing PHP ..."
+sudo apt install php libapache2-mod-php php-mysql
+
+echo "$(tput setaf 2) PHP installation completed"
+
+# check installed version
+echo "$(tput setaf 2) checking PHP version ..."
+
+php -v
+
+
+# finsih
+echo "$(tput setaf 2) script complete"
+
