@@ -25,7 +25,9 @@ read -p "Enter website name :"  website
 
 # go inside the new vue app folder
 # add vuetify
+echo "adding vuetify ..."
 (cd /var/www/$website; vue add vuetify)
 
 # check vue version
+echo "vue version ..."
 (cd /var/www/$website; vue --version)
