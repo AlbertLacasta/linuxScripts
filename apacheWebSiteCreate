@@ -18,10 +18,12 @@ echo "<html><head><title>Welcome to the page </title></head><body><h1>This is a 
 # create virtualhost
 touch /etc/apache2/sites-available/$website.conf
 
-read -p "Enter website domain ("domain-test.com") "  domain
+read -p "Enter website domain ("domain-test.com") :"  domain
+
+read -p "Enter website port :"  port
 
 echo "
-<VirtualHost *:80>
+<VirtualHost *:$port>
 ServerAdmin admin@sampledomain.com
 ServerName $domain
 ServerAlias www.$domain
