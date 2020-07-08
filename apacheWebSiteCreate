@@ -14,3 +14,17 @@ sudo chmod -R 755 /var/www/$website
 touch /var/www/$website/index.html
 
 echo "<html><head><title>Welcome to the page </title></head><body><h1>This is a sample page created by script</h1></body></html>" > /var/www/$website/index.html
+
+# create virtualhost
+touch /etc/apache2/sites-available/$website.conf
+
+read -p "Enter website domain ("domain-test.com") "  domain
+
+echo "
+<VirtualHost *:80>
+ServerAdmin admin@sampledomain.com
+ServerName $domain
+ServerAlias www.$domain
+DocumentRoot /var/www/$website
+</VirtualHost>
+" > /etc/apache2/sites-available/$website.conf
