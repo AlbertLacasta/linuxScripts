@@ -37,3 +37,5 @@ sudo a2ensite $website.conf
 # restart apache
 systemctl start apache2
 sudo systemctl reload apache2
+
+echo "remember to add the ip to your /etc/hosts file like so ==> 10.0.10.40 test-domain.local"
