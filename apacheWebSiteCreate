@@ -1,0 +1,16 @@
+#!/bin/bash
+# Crete an Apache website with virtualhost
+
+# get the website name
+read -p "Enter website name "  website
+
+mkdir /var/www/$website
+
+# privilages to the directory
+sudo chown -R $USER:$USER /var/www/$website
+sudo chmod -R 755 /var/www/$website
+
+# create sample index html
+touch /var/www/$website/index.html
+
+echo "<html><head><title>Welcome to the page </title></head><body><h1>This is a sample page created by script</h1></body></html>" > /var/www/$website/index.html
