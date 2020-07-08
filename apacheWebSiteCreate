@@ -13,7 +13,7 @@ sudo chmod -R 755 /var/www/$website
 # create sample index html
 touch /var/www/$website/index.html
 
-echo "<html><head><title>Welcome to the page </title></head><body><h1>This is a sample page created by script</h1></body></html>" > /var/www/$website/index.html
+echo "<html><head><title>Welcome to the page </title></head><body><h1>This is a sample page created by script</h1><p>You are in $website</p></body></html>" > /var/www/$website/index.html
 
 # create virtualhost
 touch /etc/apache2/sites-available/$website.conf
