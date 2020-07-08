@@ -28,3 +28,9 @@ ServerAlias www.$domain
 DocumentRoot /var/www/$website
 </VirtualHost>
 " > /etc/apache2/sites-available/$website.conf
+
+# enable website config
+sudo a2ensite $website.conf
+
+# restart apache
+sudo systemctl restart apache2
