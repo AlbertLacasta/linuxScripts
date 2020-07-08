@@ -18,7 +18,7 @@ npm install -g @vue/cli
 npm install vue
 
 # get the website name
-read -p "Enter website name "  website
+read -p "Enter website name :"  website
 
 # go to var/www to add vue
 (cd /var/www; vue create $website)
