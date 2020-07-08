@@ -34,7 +34,23 @@ do
         "MongoDb")
             echo "$(tput setaf 2) installing MongoDb ..."
             sudo apt install -y mongodb
+            # Create a list file for MongoDB
+            echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu bionic/mongodb-org/4.2 multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-4.2.list
+
+            # Reload packages
+            sudo apt-get update
+            
+            # install
+            sudo apt-get install -y mongodb-org
+           
+            echo "mongodb-org hold" | sudo dpkg --set-selections
+            echo "mongodb-org-server hold" | sudo dpkg --set-selections
+            echo "mongodb-org-shell hold" | sudo dpkg --set-selections
+            echo "mongodb-org-mongos hold" | sudo dpkg --set-selections
+            echo "mongodb-org-tools hold" | sudo dpkg --set-selections
+
             echo "$(tput setaf 2) MongoDB installation completed"
+            
             # check mongodb instance
             mongo --eval 'db.runCommand({ connectionStatus: 1 })'
             
