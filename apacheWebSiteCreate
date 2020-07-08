@@ -33,4 +33,4 @@ DocumentRoot /var/www/$website
 sudo a2ensite $website.conf
 
 # restart apache
-sudo systemctl restart apache2
+sudo systemctl reload apache2
