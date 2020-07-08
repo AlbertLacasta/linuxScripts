@@ -1,0 +1,30 @@
+#!/bin/bash
+# Crete a vue website with NO virtualhost
+
+echo "updating packages ..."
+
+# update packages
+sudo apt update
+
+echo "installing npm ..."
+
+# make sure the server has npm
+sudo apt install npm
+
+echo "installing vue ..."
+
+#install vue with npm
+npm install vue
+
+# get the website name
+read -p "Enter website name "  website
+
+# go to var/www to add vue
+(cd /var/www; vue create $website)
+
+# go inside the new vue app folder
+# add vuetify
+(cd /var/www/$website; vue add vuetify)
+
+# check vue version
+(cd /var/www/$website; vue --version)
