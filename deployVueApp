@@ -1,0 +1,45 @@
+#!/bin/bash
+# Deploy a Vue App to Apache and create a virtualhost
+
+read -p "Enter website folder name ("/var/www/vueExampleFolder") :"  folder
+
+# build vue app
+echo "build vue app ..."
+
+(cd /var/www/$folder ; npm run build)
+
+# create a production folder to move the dist folder
+echo "creating a production folder in /var/www ... "
+mkdir /var/www/production/
+chmod 755 /var/www/production/
+
+# copy dist folder from the vue app to production folder
+echo "moving dist folder form your Vue app to production folder"
+echo "moving folder ..."
+cp /var/www/$folder/dist /var/www/production
+
+# create virtualhost
+touch /etc/apache2/sites-available/$folder.conf
+
+read -p "Enter website domain ("domain-test.com") :"  domain
+
+read -p "Enter website port :"  port
+
+echo "
+<VirtualHost *:$port>
+ServerAdmin admin@sampledomain.com
+ServerName $domain
+ServerAlias www.$domain
+DocumentRoot /var/www/production/$folder
+</VirtualHost>
+" > /etc/apache2/sites-available/$website.conf
+
+# enable website config
+sudo a2ensite $domain.conf
+
+# restart apache
+systemctl start apache2
+sudo systemctl reload apache2
+
+echo "remember to add the ip to your /etc/hosts file like so ==> 10.0.10.40 test-domain.local"
+
