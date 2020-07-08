@@ -31,3 +31,10 @@ echo "adding vuetify ..."
 # check vue version
 echo "vue version ..."
 (cd /var/www/$website; vue --version)
+
+# start localhost
+echo "install npm packages..."
+(cd /var/www/$website; npm install)
+
+echo "starting localhost ..."
+(cd /var/www/$website; npm start serve)
