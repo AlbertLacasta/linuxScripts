@@ -11,12 +11,15 @@ mkdir loadTesting
 # 2 - create a simple script
 echo "$(tput setaf 2) creating a k6 script ..."
 
+# ask for web domain
+read -p "Enter the web domain (example.com) :"  domain
+
 touch script.js
 echo "import http from 'k6/http';
 import { sleep } from 'k6';
 
 export default function() {
-  http.get('http://test.k6.io');
+  http.get('http://${domain}');
   sleep(1);
 }" > script.js
 
