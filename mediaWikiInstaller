@@ -41,6 +41,10 @@ echo "moving mediawiki to /var/lib/mediawiki ..."
 sudo mv mediawiki-*/* /var/lib/mediawiki
 sudo ln -s /var/lib/mediawiki /var/www/mediawiki
 
+# install require php extensons
+sudo apt-get install php-mbstring
+sudo apt-get install php-xml
+
 echo " "
 echo " "
 echo " "
