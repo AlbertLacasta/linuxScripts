@@ -1,0 +1,35 @@
+#!/bin/bash
+# Script for install mediawiki
+# requirements: LAMP in your server
+
+echo "....................................."
+echo "Script for install mediawiki 1.34.2v"
+echo "....................................."
+echo " "
+
+echo "IMPORTANT: you need to have LAMP installed"
+
+# 0 - update and upgrade packages
+echo "updating packages ..."
+sudo apt-get update && sudo apt-get upgrade
+
+# 1 - get mediawiki
+cd /tmp/
+
+# download mediawiki
+echo "downloading mediawiki ..."
+wget https://releases.wikimedia.org/mediawiki/1.34/mediawiki-1.34.2.tar.gz
+
+tar -xvzf /tmp/mediawiki-*.tar.gz
+
+sudo mkdir /var/lib/mediawiki
+
+echo "moving mediawiki to /var/lib/mediawiki ..."
+sudo mv mediawiki-*/* /var/lib/mediawiki
+
+echo "installation complete"
+
+echo "....................................."
+echo " IMPORTANT: you need to create a "
+echo " mySQL database for mediawiki"
+echo "....................................."
