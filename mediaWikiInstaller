@@ -53,3 +53,5 @@ echo "....................................."
 echo " IMPORTANT: you need to create a "
 echo " mySQL database for mediawiki"
 echo "....................................."
+
+echo " http://localhost/mediawik"
