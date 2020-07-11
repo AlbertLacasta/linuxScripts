@@ -1,0 +1,26 @@
+#!/bin/bash
+# k6 Open Source load testing installer
+# https://k6.io/open-source
+
+echo "$(tput setaf 2) starting the installation ..."
+
+# 0 - adding key
+echo "$(tput setaf 2) adding key ..."
+
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 379CE192D401AB61
+
+# 1 - adding source
+echo "$(tput setaf 2) adding source ..."
+
+echo "deb https://dl.bintray.com/loadimpact/deb stable main" | sudo tee -a /etc/apt/sources.list
+
+# 2 - update repository
+echo "$(tput setaf 2) updating ..."
+
+sudo apt-get update
+
+# 3 - install k6 load testing
+echo "$(tput setaf 2) installing k6 ..."
+
+sudo apt-get install k6
+
