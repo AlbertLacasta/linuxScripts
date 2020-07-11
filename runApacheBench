@@ -1,0 +1,16 @@
+#!/bin/bash
+# Make a load bench of a website using Apache bench
+
+# ask for the website domain
+read -p "Enter website domain (example.com): "  website
+
+# ask for total users
+read -p "Enter the total users : "  users
+
+
+# get the website name
+read -p "Enter the total website request : "  request
+
+echo "runing ApacheBench ..."
+
+ab -c $users -n $request https://www.$website
