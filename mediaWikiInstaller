@@ -8,6 +8,10 @@ echo "....................................."
 echo " "
 
 echo "IMPORTANT: you need to have LAMP installed"
+echo " "
+echo " "
+echo " "
+echo " "
 
 # 0 - update and upgrade packages
 echo "updating packages ..."
