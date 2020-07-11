@@ -39,6 +39,7 @@ sudo mkdir /var/lib/mediawiki
 
 echo "moving mediawiki to /var/lib/mediawiki ..."
 sudo mv mediawiki-*/* /var/lib/mediawiki
+sudo ln -s /var/lib/mediawiki /var/www/mediawiki
 
 echo " "
 echo " "
