@@ -1,0 +1,61 @@
+#!/bin/bash
+# Install sysPass Password Manager on Ubuntu 20.04 lts
+
+echo "*****************************************"
+echo "sysPass installer"
+echo "*****************************************"
+
+# 0 - install php extensions
+echo "installing php extenisons ..."
+apt install php-pear php php-cgi php-cli php-common php-fpm php-gd php-json php-readline php-curl php-intl php-ldap php-xml php-mbstring
+
+# 1 - create database
+echo "creating syspass database ..."
+
+read -p "Enter a new database user :"  user
+read -p "Enter the password for the new user :"  pass
+
+mysql -u root -p
+create database syspass;
+grant all privileges on syspass.* to $user@localhost identified by $pass;
+flush privileges;
+quit
+
+echo "reset mariadb ..."
+systemctl restart mariadb
+
+# 2 - download syspass
+echo "downloading syspass ..."
+git clone https://github.com/nuxsmin/sysPass.git /var/www/syspass
+
+chown www-data -R /var/www/syspass
+chmod 750 /var/www/syspass/app/{config,backup}
+
+# 3 - install syspass dependencies
+echo "installing dependencies ..."
+cd /var/www/syspass
+
+touch "composer-install.sh"
+
+echo "#!/bin/sh
+ EXPECTED_SIGNATURE="$(wget -q -O - https://composer.github.io/installer.sig)"
+ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ ACTUAL_SIGNATURE="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+ if [ "$EXPECTED_SIGNATURE" != "$ACTUAL_SIGNATURE" ]
+ then
+     >&2 echo 'ERROR: Invalid installer signature'
+     rm composer-setup.php
+     exit 1
+ fi
+ php composer-setup.php --quiet
+ RESULT=$?
+ rm composer-setup.php
+ exit $RESULT" > composer-install.sh
+ 
+ ./composer-install.sh
+
+# php dependencies
+php composer.phar install --no-dev
+
+echo "installation completed"
+echo "http://<syspass-server>/syspass"
