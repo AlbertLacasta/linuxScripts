@@ -17,7 +17,8 @@ read -p "Enter the password for the new user :"  pass
 
 mysql -u root -p
 create database syspass;
-grant all privileges on syspass.* to $user@localhost identified by $pass;
+CREATE USER 'syspass'@'localhost' IDENTIFIED BY 'yourpass';
+GRANT ALL PRIVILEGES ON syspass.* TO 'syspass'@'localhost';
 flush privileges;
 quit
 
