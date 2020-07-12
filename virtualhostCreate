@@ -2,13 +2,13 @@
 # create an apache virtualhost
 
 # create virtualhost
-read -p "Enter the website name (example.com) :"  website
+read -p "Enter the website name : "  website
 
 touch /etc/apache2/sites-available/$website.conf
 
-read -p "Enter website domain ("domain-test.com") :"  domain
+read -p "Enter website domain ("domain-test.com") : "  domain
 
-read -p "Enter website port :"  port
+read -p "Enter website port : "  port
 
 echo "
 <VirtualHost *:$port>
@@ -24,7 +24,7 @@ sudo a2ensite $website.conf
 
 # restart apache
 systemctl start apache2
-sudo systemctl reload apache2
+systemctl reload apache2
 
 echo "remember to add the ip to your /etc/hosts file like so ==> 10.0.10.40 test-domain.local"
 © 2020 GitHub, Inc.
