@@ -5,7 +5,9 @@ echo "*****************************************"
 echo "sysPass installer"
 echo "*****************************************"
 
-# 0 - install php extensions
+# 0 - install php extensions and others
+sudo apt install zip
+
 echo "installing php extenisons ..."
 apt install php-pear php php-cgi php-cli php-common php-fpm php-gd php-json php-readline php-curl php-intl php-ldap php-xml php-mbstring
 
