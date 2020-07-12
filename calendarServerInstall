@@ -1,0 +1,29 @@
+#!/bin/bash
+# Install calendar and contact server selfhosting
+
+echo "********************************************************"
+echo "Calendar and contact server selfhosting"
+echo "********************************************************"
+
+# go to apache web folder
+cd /var/www/
+
+# create a folder for calendar server
+echo "creating a calendarServer directory in the /var/www/"
+mkdir calendarServer
+
+cd calendarServer
+
+# clone git repository
+echo "cloning calendar server ..."
+git clone https://github.com/apple/ccs-calendarserver.git
+
+# access to ccs-calendarserver
+cd ccs-calendarserver
+
+# run develop
+./bin/develop
+
+# start the host
+bin/run -n
+
