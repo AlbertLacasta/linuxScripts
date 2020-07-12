@@ -1,6 +1,8 @@
 #!/bin/bash
 # Install calendar and contact server selfhosting
 
+echo "the calendar server is no longer available"
+
 echo "********************************************************"
 echo "Calendar and contact server selfhosting"
 echo "********************************************************"
