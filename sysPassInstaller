@@ -53,6 +53,8 @@ echo "#!/bin/sh
  rm composer-setup.php
  exit $RESULT" > composer-install.sh
  
+ chmod 755 composer-install.sh
+ 
  ./composer-install.sh
 
 # php dependencies
