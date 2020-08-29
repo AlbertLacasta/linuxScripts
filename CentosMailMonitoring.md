@@ -55,6 +55,19 @@ set nss-config-dir=folder-with-gmail-cert
 
 ```
 
+create certificate
+
+```bash
+mkdir /etc/certs
+cd /etc/certs/
+certutil -N -d /etc/certs
+echo -n | openssl s_client -connect smtp.gmail.com:465 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > /etc/certs/gmail.crt
+certutil -A -n "Google Internet Authority" -t "C,," -d ~/.certs -i /etc/certs/gmail.crt
+
+```
+
+
+
 ## Sending e-mails with `mail` (or `mailx`)
 
 **Before to send email activate the following option in your sender google acount : <https://myaccount.google.com/u/1/lesssecureapps?gar=1> **
