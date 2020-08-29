@@ -1,4 +1,5 @@
 #!/bin/bash
+# created for centos 7
 CURRENT=$(df / | grep / | awk '{ print $5}' | sed 's/%//g')
 THRESHOLD=90
 
