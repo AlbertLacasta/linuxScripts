@@ -57,6 +57,8 @@ set nss-config-dir=folder-with-gmail-cert
 
 ##Sending e-mails with `mail` (or `mailx`)
 
+** Befor to send email activate the following option in your sender google acount : https://myaccount.google.com/u/1/lesssecureapps?gar=1 **
+
 Here are some of the available options of **Heirloom mailx**:
 
 - `-a` **file** Allows you to attach the given file to the e-mail
