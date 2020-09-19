@@ -18,12 +18,8 @@ readonly BACKUP_PATH="${BACKUP_DIR}/${HOST_NAME}-${DATETIME}"
 # Get the lastest link for the incremental backup
 readonly LATEST_LINK="${BACKUP_DIR}/latest"
 
-# execute backup
-rsync -av --delete \
-  "${SOURCE_DIR}/" \
-  --link-dest "${LATEST_LINK}" \
-  --exclude=".cache" --exclude="/mnt" \
-  "${BACKUP_PATH}"
+# execute backup  
+rsync -avx --delete --exclude="/tmp/*" --exclude="/mnt/*" --exclude="proc/*" --link-dest "${LATEST_LINK}" "${SOURCE_DIR}" "${BACKUP_PATH}"
 
 # Remove old link
 rm -rf "${LATEST_LINK}"
