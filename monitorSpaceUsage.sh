@@ -6,7 +6,7 @@ LIMIT='80'
 DIR='/'
 #Here we declare variable DIR with name of directory that we want to monitor
 
-MAILTO='stormdatacenter@gmail.com'
+MAILTO='yourEmail@mail.com'
 #Here we declare variable MAILTO with email address
 
 SUBJECT="$DIR disk usage"
